@@ -14,6 +14,8 @@ app.directive('song', function ($rootScope, $window, playerService) {
                 title = attrs.songTitle;
                 user = attrs.songUser;
 
+                currentEl.nextAll();
+
                 playerService.songClicked(currentEl, url, thumbnail, title, user);
             });
 

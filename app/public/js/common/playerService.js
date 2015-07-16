@@ -1,6 +1,6 @@
 'use strict'
 
-app.factory('playerService', function($rootScope, $log) {
+app.factory('playerService', function($rootScope, $log, queueService) {
 
     $rootScope.isSongPlaying = false;
 
@@ -56,6 +56,13 @@ app.factory('playerService', function($rootScope, $log) {
         }
         if (value >= 0 && value <= 1) {
             player.elPlayer.volume = parseFloat(value).toFixed(1);
+        }
+    };
+
+    player.play = function(currentTrack, nextTracks) {
+        queueService.push(currentTrack);
+        for ( var i = 0; i < nextTracks.length; i++ ) {
+            queueService.push(nextTracks[i]);
         }
     };
 
